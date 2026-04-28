@@ -1,34 +1,10 @@
 # BobSkills
 
-A small repository of custom Bob skills focused on document automation and presentation generation.
+A small repository of custom Bob skills and coding rules focused on document automation and in-file change preservation.
 
 ## Skills
 
-### [`draft-powerpoint`](draft-powerpoint/)
-
-Generate PowerPoint presentations from templates using a deterministic, request-first workflow.
-
-**What it does**
-- Extracts editable template structure from speaker notes
-- Uses a `request.json` file to describe deck structure and content
-- Generates a final `.pptx` from a compatible template
-- Supports repeating content patterns such as items, steps, and statistics
-- Supports table population and in-place image or pictogram swaps from asset-library slides
-
-**Typical workflow**
-1. Extract speaker notes from a template
-2. Create a request payload with slide mappings and content
-3. Generate the final presentation
-
-**Key files**
-- [`draft-powerpoint/SKILL.md`](draft-powerpoint/SKILL.md)
-- [`draft-powerpoint/README.md`](draft-powerpoint/README.md)
-- [`draft-powerpoint/scripts/pptx_workflow.py`](draft-powerpoint/scripts/pptx_workflow.py)
-
-**Included assets**
-- Example presentation templates are available in [`draft-powerpoint/assets/`](draft-powerpoint/assets/)
-
-### [`md2pdf`](md2pdf/)
+### [`md2pdf`](skills/md2pdf/)
 
 Convert Markdown documents to PDF with Mermaid diagram support.
 
@@ -46,31 +22,43 @@ Convert Markdown documents to PDF with Mermaid diagram support.
 4. Save the generated PDF
 
 **Key files**
-- [`md2pdf/SKILL.md`](md2pdf/SKILL.md)
-- [`md2pdf/README.md`](md2pdf/README.md)
-- [`md2pdf/md2pdf.md`](md2pdf/md2pdf.md)
+- [`skills/md2pdf/SKILL.md`](skills/md2pdf/SKILL.md)
+- [`skills/md2pdf/README.md`](skills/md2pdf/README.md)
+- [`skills/md2pdf/md2pdf.md`](skills/md2pdf/md2pdf.md)
+
+## Rules
+
+### [`rules-code-historian`](rules/rules-code-historian/)
+
+Preserve replaced or removed code as comments whenever modifying source files.
+
+**What it does**
+- Requires old code to remain in-place as comments before new code is added
+- Enforces timestamped change markers with a concise reason
+- Defines comment formats for modern languages, RPG fixed/free format, and SQL
+- Uses a summary format for removed blocks larger than 20 lines
+- Creates a readable in-file history for regulated, legacy, or audit-heavy environments
+
+**Key files**
+- [`rules/rules-code-historian/AGENTS.md`](rules/rules-code-historian/AGENTS.md)
+- [`skills/AGENTS.md`](skills/AGENTS.md)
 
 ## Repository Structure
 
-- [`draft-powerpoint/`](draft-powerpoint/) — PowerPoint generation skill, scripts, and example templates
-- [`md2pdf/`](md2pdf/) — Markdown-to-PDF conversion skill and documentation
+- [`skills/md2pdf/`](skills/md2pdf/) — Markdown-to-PDF conversion skill and documentation
+- [`rules/rules-code-historian/`](rules/rules-code-historian/) — Code preservation rule set for in-file historical traceability
 
 ## Requirements
 
-### For [`draft-powerpoint`](draft-powerpoint/)
-- Python 3
-- [`python-pptx`](draft-powerpoint/README.md)
-- `lxml`
-
-### For [`md2pdf`](md2pdf/)
+### For [`md2pdf`](skills/md2pdf/)
 - Python 3
 - `md2pdf-mermaid`
 - Playwright Chromium
 
 ## Usage
 
-These folders are structured as Bob skills. Each skill includes a [`SKILL.md`](draft-powerpoint/SKILL.md) definition plus supporting documentation and assets.
+These folders are structured as Bob skills and rules. Each skill includes a [`SKILL.md`](skills/md2pdf/SKILL.md) definition plus supporting documentation. Rules are documented in [`AGENTS.md`](rules/rules-code-historian/AGENTS.md).
 
 For detailed instructions, see:
-- [`draft-powerpoint/README.md`](draft-powerpoint/README.md)
-- [`md2pdf/README.md`](md2pdf/README.md)
+- [`skills/md2pdf/README.md`](skills/md2pdf/README.md)
+- [`rules/rules-code-historian/AGENTS.md`](rules/rules-code-historian/AGENTS.md)
